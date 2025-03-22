@@ -12,7 +12,7 @@ namespace ScreenSleep
     public static class Screen
     {
         [DllImport("user32.dll")]
-        private static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);
+        private static extern int PostMessage(int hWnd, int hMsg, int wParam, int lParam);
 
         // See https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendmessage
         private const int Broadcast = 0xFFFF;
@@ -25,7 +25,7 @@ namespace ScreenSleep
 
         public static void SetScreenState(ScreenState state)
         {
-            SendMessage(Broadcast, WmSyscommand, ScMonitorPower, (int)state);
+            PostMessage(Broadcast, WmSyscommand, ScMonitorPower, (int)state);
         }
 
     }
